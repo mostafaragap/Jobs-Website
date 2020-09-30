@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Nanbar-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand">
+                    <img src="~/images/Jobs-Logo.png" class="logo-size" />
+                </a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">
+                            <i class="glyphicon glyphicon-home"></i>
+                            الرئيسية
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="glyphicon glyphicon-folder-open"></i>
+                            اصناف العروض
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="glyphicon glyphicon-sign"></i>
+                            حول الموقع
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="glyphicon glyphicon-envelope"></i>
+                            اتصل بنا
+                        </a>
+                    </li>
+                </ul>
+                <!-- login-->
+                @Html.Partial("_Login")
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            @RenderBody()
+        </div>
+    </div>
+   
+    <!--footer-->
+    <footer class="navbar  myfooter">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>
+                        <i class="glyphicon glyphicon-question-sign">
+                        </i>
+                        من نحن؟
+
+                    </h3>
+                    <p>
+                        السلام عليكم ورحمة الله تسعدنا زيارتكم للموقع ونتمني ان ينال اعجابكم وهذا الموقع مهتم بالتوظيف والوظائف الخاصة
+
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h3>
+                        <i class="glyphicon glyphicon-globe">
+
+                        </i>
+                        روابط هامة
+                    </h3>
+                    <ul>
+                        <li> <a href="#"> وظائف القطاع العام</a> </li>
+                        <li> <a href="#">وظائف القطاع الخاص</a>  </li>
+                        <li><a href="#"> وظائف خارج البلاد </a>  </li>
+                        <li>   <a href="#">وظائف متنوعة </a>  </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h3>
+                        <i class="glyphicon glyphicon-envelope">
+                        </i>
+                        تواصل معنا
+
+
+                    </h3>
+                    <ul>
+                        <li> <a href="#">صفحتنا على الفيسبوك </a>  </li>
+                        <li><a href="#">تابعنا على تويتر </a></li>
+                        <li><a href="#">شاهدنا على اليوتيوب</a> </li>
+                        <li><a href="#">اترك لنا رسالة</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="subfooter">
+            <span> 2020 جميع الحقوق محفوظة </span>
+        </div>
+    </footer>
+
+    <script src="~/Scripts/jquery.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

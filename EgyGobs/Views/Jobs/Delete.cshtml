@@ -1,0 +1,60 @@
+﻿@model EgyGobs.Models.Job
+
+@{
+    ViewBag.Title = "حذف";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>هل انت متاكد من حذف هذا العنصر ؟</h3>
+<div>
+    <h4>وظيفة</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JobImage)
+        </dt>
+
+        <dd>
+            <img src="@Url.Action("UserPhotos", "Home" , new { id = Model.Id} )" class="img-circle" alt="ser Image" style="width:70px ; height :70px" />
+
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JobTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JobContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobContent)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.category.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.category.CategoryName)
+        </dd>
+
+
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="حذف" class="btn btn-danger" /> |
+            @Html.ActionLink("الرجوع للقائمة", "Index")
+        </div>
+    }
+</div>

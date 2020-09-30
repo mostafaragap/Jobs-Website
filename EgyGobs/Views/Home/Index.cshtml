@@ -1,0 +1,35 @@
+﻿@model IEnumerable<EgyGobs.Models.Category>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h2>مرحبا بك</h2>
+    <p style="color: black">مرحبا بك فى فضاء البحث عن الوظائف باختلاف اصنافها. يمكنك نشر وظيفة ان كنت ناشرا ويمكنك التقدم للوظيفة اذا كنت باحث عن عمل</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">المزيد من التفاصيل &raquo;</a></p>
+</div>
+
+@foreach (var item in Model)
+{
+<div class="panel panel-default" style="padding:15px">
+    <h1 class="panel-heading">@Html.DisplayFor(modelitem => item.CategoryName)</h1>
+    <h5>@Html.DisplayFor(modelitem => item.description)</h5>
+    <div class="row">
+        @foreach (var subitem in item.jobs)
+        {
+
+
+            <div class="col-md-3 thumbnail" style="margin-bottom:30px; margin-left:20px; height:auto">
+                <img src="@Url.Action("UserPhotos", "Home" , new { id = subitem.Id} )" />
+
+                <h3>@Html.DisplayFor(modelitem => subitem.JobTitle)</h3>
+                <h3>@Html.DisplayFor(modelitem => subitem.JobContent)</h3>
+                <button class="btn btn-default"> المزيد من التفاصيل</button>
+            </div>
+
+
+        }
+    </div>
+</div>
+}
+

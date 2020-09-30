@@ -1,0 +1,41 @@
+﻿@model EgyGobs.Models.Category
+
+@{
+    ViewBag.Title = "حذف";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>حذف</h2>
+
+<h3>هل انت متاكد بانك تريد حذف هذا العنصر؟</h3>
+<div>
+    <h4>اصناف الوظائف</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value=" تاكيد الحذف" class="btn btn-danger"  /> |
+            @Html.ActionLink("الرجوع للقائمة الرئيسية", "Index")
+        </div>
+    }
+</div>

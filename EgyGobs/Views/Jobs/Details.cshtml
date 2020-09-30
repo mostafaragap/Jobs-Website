@@ -1,0 +1,54 @@
+﻿@model EgyGobs.Models.Job
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Job</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.JobImage)
+        </dt>
+
+        <dd>
+            <img src="@Url.Action("UserPhotos", "Home" , new { id = Model.Id} )" class="img-circle" alt="user Image" style="width:70px ; height :70px" />
+
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JobTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JobContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobContent)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.category.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.category.CategoryName)
+        </dd>
+
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("تعديل", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink(" الرجوع للقائمة", "Index")
+</p>
