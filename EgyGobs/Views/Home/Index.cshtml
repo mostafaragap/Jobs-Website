@@ -19,13 +19,13 @@
         {
 
 
-            <div class="col-md-3 thumbnail" style="margin-bottom:30px; margin-left:20px; height:auto">
-                <img src="@Url.Action("UserPhotos", "Home" , new { id = subitem.Id} )" />
+        <div class="col-md-3 thumbnail" style="margin-bottom:30px; margin-left:20px; height:auto">
+            <img src="@Url.Action("UserPhotos", "Home" , new { id = subitem.Id} )" />
 
-                <h3>@Html.DisplayFor(modelitem => subitem.JobTitle)</h3>
-                <h3>@Html.DisplayFor(modelitem => subitem.JobContent)</h3>
-                <button class="btn btn-default"> المزيد من التفاصيل</button>
-            </div>
+            <h3>@Html.DisplayFor(modelitem => subitem.JobTitle)</h3>
+            <h3>@Html.DisplayFor(modelitem => subitem.JobContent)</h3>
+            @Html.ActionLink("التفاصيل", "Details", new { job_Id = subitem.Id } , new {@class="btn btn-primary"  })
+        </div>
 
 
         }

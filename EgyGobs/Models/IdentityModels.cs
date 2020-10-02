@@ -36,6 +36,6 @@ namespace WebApplication1.Models
 
         public System.Data.Entity.DbSet<EgyGobs.Models.Job> Jobs { get; set; }
 
-       
+        public System.Data.Entity.DbSet<EgyGobs.Models.ApplyForJob> ApplyForJobs { get; set; }
     }
 }

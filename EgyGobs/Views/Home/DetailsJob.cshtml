@@ -1,0 +1,46 @@
+﻿@model EgyGobs.Models.ApplyForJob
+
+@{
+    ViewBag.Title = "DetailsJob";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>تفاصيل التقدم الى الوظيفة</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.job.JobTitle) :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(modelItem => Model.job.JobTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("الرسالة"):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(modelItem => Model.message)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("تاريخ التقدم"):
+        </dt>
+
+        <dd>
+           
+            @Html.DisplayFor(modelItem => Model.ApplayDate)
+        </dd>
+
+      
+
+    </dl>
+</div>
+<p>
+   
+    @Html.ActionLink("الرجوع الى القائمة", "GetJobsByUser")
+</p>

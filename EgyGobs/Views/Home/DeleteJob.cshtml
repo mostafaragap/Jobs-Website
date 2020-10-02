@@ -1,0 +1,51 @@
+﻿@model EgyGobs.Models.ApplyForJob
+
+@{
+    ViewBag.Title = "حذف التقدم الى هذه الوظيفة";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>الرجوع فى التقدم لهذه الوظيفة</h2>
+
+<h3>هل تريد حقا حذف هذا الطلب ؟</h3>
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName(":اسم الوظيفة")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job.JobTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("تاريخ التقدم: ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplayDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayName(":رسالتك  ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.message)
+        </dd>
+
+
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="تاكيد الحذف" class="btn btn-danger" /> |
+            @Html.ActionLink("الرجوع الى القائمة", "GetJobsByUser")
+        </div>
+    }
+</div>

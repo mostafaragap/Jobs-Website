@@ -1,0 +1,66 @@
+﻿@model EgyGobs.Models.ApplyForJob
+
+@{
+    ViewBag.Title = "تعديل تفاصيل التقدم";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>تعديل تفاصيل التقدم الى الوظيفة</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Job</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.id)
+    @Html.HiddenFor(model => model.jobId)
+    @Html.HiddenFor(model => model.userId)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.userId, "اسم المستخدم :", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Model.user.UserName
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.jobId, "اسم الوظيفة :", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Model.job.JobTitle
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label(" رسالتك :", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextArea("Message", new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessage("Message", "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ApplayDate, "تاريخ التقدم :", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Model.ApplayDate
+        </div>
+    </div>
+
+
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="حفظ التعديلات" class="btn btn-default" />
+        </div>
+       
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("الرجوع الى القائمة", "GetJobsByUser")
+</div>

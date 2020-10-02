@@ -1,0 +1,51 @@
+﻿@model EgyGobs.Models.Job
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>تفاصيل الوظيفة</h2>
+
+<div>
+    <h4>الوظيفة</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.category.CategoryName ):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.category.CategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JobTitle):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JobContent):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobContent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JobImage):
+        </dt>
+
+        <dd>
+            <img src="@Url.Action("UserPhotos", "Home" , new { id = Model.Id} )" alt="user Image" class="thumbnail" style="width :128px ; height:128px"/>
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("التقدم الى هذه الوظيفة", "Apply", new { id = Model.Id } , new {@class="btn btn-success" }) |
+    @Html.ActionLink("الرجوع الى الصفحة الرئيسية", "Index" , new {@class="btn btn-default" })
+</p>
