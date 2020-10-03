@@ -191,7 +191,35 @@ namespace WebApplication1.Controllers
             return RedirectToAction("GetJobsByUser");
         }
 
+        [Authorize]
+       public ActionResult GetJobsByPublishers()
+        {
+            var userId = User.Identity.GetUserId();
+            var Jobs = from app in db.ApplyForJobs
+                       join job in db.Jobs
+                       on app.jobId equals job.Id
+                       where job.User.Id == userId && app.user.Id != null
+                       select app ;
+            var groubed = from j in Jobs
+                          group j by j.job.JobTitle
+                          into gr
+                          select new JobsViewModel
+                          {
+                              JobTitle = gr.Key,
+                              Items = gr
+                          };
 
+            if(Jobs.Count() < 1)
+            {
+                ViewBag.Res = "عفوا لم يتقدم اشخاصا بعد لوظائفك";
+            }
+            else
+            {
+                ViewBag.Res = "الاشخاص الذين تقدموا لوظائفك";
+                return View(groubed.ToList());
+            }
+            return View(Jobs.ToList());
+        }
 
 
     }

@@ -180,3 +180,4 @@ E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.dll
 E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.pdb
 E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.Migrations.Add_ApplyForJob.resources
 E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.csprojAssemblyReference.cache
+E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.Migrations.AddJobRelationWithUsers.resources

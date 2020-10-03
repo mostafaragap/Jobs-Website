@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using EgyGobs.Models;
 using WebApplication1.Models;
 using System.IO;
+using Microsoft.AspNet.Identity;
 
 namespace EgyGobs.Controllers
 {
@@ -64,6 +65,7 @@ namespace EgyGobs.Controllers
                         imageData = binary.ReadBytes(poImgFile.ContentLength);
                     }
                 }
+                job.UserId = User.Identity.GetUserId();
                 job.JobImage = imageData;
                 db.Jobs.Add(job);
                 db.SaveChanges();
