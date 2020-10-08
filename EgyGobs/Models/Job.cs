@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using WebApplication1.Models;
 
 namespace EgyGobs.Models
@@ -16,6 +17,7 @@ namespace EgyGobs.Models
         public string JobTitle { get; set; }
         [Required]
         [DisplayName("وصف الوظيفة")]
+        [AllowHtml]
         public string JobContent { get; set; }
        
        [DisplayName("صورة الوظيفة")]

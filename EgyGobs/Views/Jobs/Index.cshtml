@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<h2>قائمة الوظائف</h2>
+<h2> قائمة الوظائف التى قمت بنشرها</h2>
 
 <p>
     @Html.ActionLink("اضافة وظيفة جديدة", "Create")
@@ -19,34 +19,37 @@
             @Html.DisplayNameFor(model => model.JobTitle)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.JobContent)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.JobImage)
         </th>
+        <th style="font-size:15px ;display:block ;width:300px;">
+            @Html.DisplayNameFor(model => model.JobContent)
+        </th>
+
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.category.CategoryName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.JobTitle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.JobContent)
-        </td>
-        <td>
-            <img src="@Url.Action("UserPhotos", "Home" , new { id = item.Id} )" class="img-circle" alt="user Image" style="width:70px ; height :70px" />
-        </td>
-        <td>
-            @Html.ActionLink("تعديل", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("تفاصيل", "Details", new { id=item.Id }) |
-            @Html.ActionLink("حذف", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+    
+<tr style="color:black">
+    <td>
+        @Html.DisplayFor(modelItem => item.category.CategoryName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.JobTitle)
+    </td>
+    <td>
+        <img src="@Url.Action("UserPhotos", "Home" , new { id = item.Id} )" class="img-circle" alt="user Image" style="width:70px ; height :70px" />
+    </td>
+    <td style="font-size:15px ;display:block ;width:300px;">
+    <!--Error-->  @Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(modelitem => item.JobContent).ToString())) 
+    </td>
+
+    <td>
+        @Html.ActionLink("تعديل", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" }) 
+        @Html.ActionLink("تفاصيل", "Details", new { id = item.Id }, new { @class = "btn btn-success" }) 
+        @Html.ActionLink("حذف", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+    </td>
+</tr>
 }
 
 </table>

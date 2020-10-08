@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using EgyGobs.Models;
 using System.Net;
 using System.Data.Entity;
+using System.Net.Mail;
 
 namespace WebApplication1.Controllers
 {
@@ -28,13 +29,76 @@ namespace WebApplication1.Controllers
 
             return View();
         }
-
+        [HttpGet]
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+           
 
             return View();
         }
+        [HttpPost]
+        public ActionResult Contact(ContactModel contact)
+        {
+            var mail = new MailMessage();
+            var loginInfo = new NetworkCredential("devmostafa350@gmail.com", "MOstafa1234_");
+            mail.From = new MailAddress(contact.Email);
+            mail.To.Add(new MailAddress("devmostafa350@gmail.com"));
+            mail.Subject = contact.Subject;
+            mail.IsBodyHtml = true; 
+            string body = "اسم المرسل : " + contact.Name + "<br>" +
+                " بريد المرسل : " + contact.Email + "<br>" +
+                "عنوان الرسالة : " + contact.Subject + "<br>" +
+                "نص الرسالة : <b>" + contact.Message + "</b>";
+            mail.Body = body;
+
+            var smtpClient = new SmtpClient("smtp.gmail.com", 587);
+            smtpClient.EnableSsl = true;
+            smtpClient.Credentials = loginInfo;
+            smtpClient.Send(mail); 
+            return RedirectToAction("Index");
+        }
+        public FileContentResult UserImage()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                String userId = User.Identity.GetUserId();
+
+                if (userId == null)
+                {
+                    string fileName = HttpContext.Server.MapPath(@"~/Images/noImg.png");
+
+                    byte[] imageData = null;
+                    FileInfo fileInfo = new FileInfo(fileName);
+                    long imageFileLength = fileInfo.Length;
+                    FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                    BinaryReader br = new BinaryReader(fs);
+                    imageData = br.ReadBytes((int)imageFileLength);
+
+                    return File(imageData, "image/png");
+
+                }
+                // to get the user details to load user Image
+                var bdUsers = HttpContext.GetOwinContext().Get<ApplicationDbContext>();
+
+                var userImage = bdUsers.Users.Where(x => x.Id == userId).FirstOrDefault();
+
+                return new FileContentResult(userImage.UserImage, "image/jpeg");
+            }
+            else
+            {
+                string fileName = HttpContext.Server.MapPath(@"~/Images");
+
+                byte[] imageData = null;
+                FileInfo fileInfo = new FileInfo(fileName);
+                long imageFileLength = fileInfo.Length;
+                FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                BinaryReader br = new BinaryReader(fs);
+                imageData = br.ReadBytes((int)imageFileLength);
+                return File(imageData, "image/png");
+
+            }
+        }
+
 
         public FileContentResult UserPhotos( int id)
         {
@@ -142,7 +206,8 @@ namespace WebApplication1.Controllers
             {
                 return HttpNotFound();
             }
-          
+       
+
             return View(job);
         }
 
@@ -156,6 +221,7 @@ namespace WebApplication1.Controllers
             if (ModelState.IsValid)
             {
                 job.ApplayDate = DateTime.Now;
+                job.job.JobImage = job.job.JobImage;
                 db.Entry(job).State = EntityState.Modified;
                
                 db.SaveChanges();
@@ -218,7 +284,30 @@ namespace WebApplication1.Controllers
                 ViewBag.Res = "الاشخاص الذين تقدموا لوظائفك";
                 return View(groubed.ToList());
             }
-            return View(Jobs.ToList());
+            return View(groubed.ToList());
+        }
+
+        public ActionResult Search()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Search( string searchName)
+        {
+            var result = db.Jobs.Where(a => a.JobTitle.Contains(searchName)
+            || a.JobContent.Contains(searchName)
+            || a.category.CategoryName.Contains(searchName)
+            || a.category.description.Contains(searchName)); 
+            if(result.Count() < 1 )
+            {
+                ViewBag.Result = "عذرا لا توجد نتائج .يرجى المحاولة مرة اخرى";
+                return View(result.ToList());
+            }else
+            {
+                ViewBag.Result = " ";
+                return View(result.ToList());
+            }
+         
         }
 
 

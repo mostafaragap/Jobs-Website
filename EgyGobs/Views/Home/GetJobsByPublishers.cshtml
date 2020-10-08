@@ -1,11 +1,22 @@
 ﻿@model IEnumerable<EgyGobs.Models.JobsViewModel>
 
+
+    <div>
+        @{
+            if (ViewBag.Res != null)
+            {
+                <h3 style="color:red">@ViewBag.Res</h3>
+            }
+           
+        }
+    </div>
+
 @foreach (var gr in Model)
 {
     <h3>
         @gr.JobTitle
-    </h3> 
-    <table class="table table-bordered table-hover" >
+    </h3>
+    <table class="table table-bordered table-hover">
         <tr>
             <th>
                 اسم الباحث
@@ -14,24 +25,24 @@
                 نص الرسالة
             </th>
             <th>
-               تاريخ الارسال
+                تاريخ الارسال
             </th>
         </tr>
         @foreach (var item in gr.Items)
         {
-    <tr>
-        <td>
-            @item.user.UserName
-        </td>
-        <td>
-            @item.message
-        </td>
-        <td>
-            @item.ApplayDate
-        </td>
+            <tr>
+                <td>
+                    @item.user.UserName
+                </td>
+                <td>
+                    @item.message
+                </td>
+                <td>
+                    @item.ApplayDate
+                </td>
 
 
-    </tr>
+            </tr>
 
         }
 

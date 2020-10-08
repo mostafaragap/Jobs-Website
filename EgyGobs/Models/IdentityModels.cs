@@ -13,6 +13,7 @@ namespace WebApplication1.Models
     {
         public string usertype { get; set; }
         public string country { get; set; }
+        public byte[] UserImage { get; set; }
         public virtual ICollection<Job> jobs { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -40,5 +41,7 @@ namespace WebApplication1.Models
         public System.Data.Entity.DbSet<EgyGobs.Models.Job> Jobs { get; set; }
 
         public System.Data.Entity.DbSet<EgyGobs.Models.ApplyForJob> ApplyForJobs { get; set; }
+
+       // public System.Data.Entity.DbSet<WebApplication1.Models.EditProfileViewModel> EditProfileViewModel { get; set; }
     }
 }

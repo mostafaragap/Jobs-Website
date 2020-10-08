@@ -70,6 +70,9 @@ namespace WebApplication1.Models
         [DisplayName("اسم المستخدم")]
         public string username { get; set; }
 
+        [Display(Name = "صورة البروفايل ")]
+        public byte UserImage { get; set; }
+
         [Required]
         [DisplayName("نوع الحساب")]
         public string usertype { get; set; }
@@ -91,6 +94,41 @@ namespace WebApplication1.Models
         [DataType(DataType.Password)]
         [Display(Name = "تاكيد كلمة السر")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
+    }
+
+    public class EditProfileViewModel
+    {
+        public int id { get; set; }
+        [Required]
+        [DisplayName("اسم المستخدم")]
+        public string username { get; set; }
+        [Display(Name = "صورة البروفايل ")]
+        public byte[] UserImage { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [Display(Name = "البريد الالكترونى")]
+        public string Email { get; set; }
+        [Required]
+        [DisplayName("الدولة")]
+        public string country { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "كلمة السر الحالية")]
+        public string CurrentPassword { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "كلمة السر الجديدة")]
+        public string NewPassword { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "تاكيد كلمة السر الجديدة")]
+        [Compare("NewPassword", ErrorMessage = "كلمة السر المدخلة غير متوافقة. رجاء قم بالتصحيح")]
         public string ConfirmPassword { get; set; }
     }
 

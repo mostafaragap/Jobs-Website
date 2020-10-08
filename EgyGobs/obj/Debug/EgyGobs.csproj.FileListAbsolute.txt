@@ -166,6 +166,7 @@ E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\bin\System.Web.Webpages.Deployment.xml
 E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\bin\System.Web.Webpages.Razor.xml
 E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\bin\System.Web.Helpers.xml
 E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\bin\System.Web.Mvc.xml
+E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.csprojAssemblyReference.cache
 E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.Migrations.InitialCreate.resources
 E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.Migrations.Add_Country_type.resources
 E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.Migrations.Add_Categories.resources
@@ -174,10 +175,11 @@ E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.Migrations.Updates_j
 E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.Migrations.Updates_jobs_model1.resources
 E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.Migrations.Updates_jobs_model1_2.resources
 E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.Migrations.add_roles.resources
+E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.Migrations.Add_ApplyForJob.resources
+E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.Migrations.AddJobRelationWithUsers.resources
+E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.Migrations.addUserPhoto.resources
 E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.csproj.GenerateResource.cache
 E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.csproj.CopyComplete
 E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.dll
 E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.pdb
-E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.Migrations.Add_ApplyForJob.resources
-E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.csprojAssemblyReference.cache
-E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.Migrations.AddJobRelationWithUsers.resources
+E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.Migrations.updateCol.resources

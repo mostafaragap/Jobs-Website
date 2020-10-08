@@ -24,28 +24,32 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">
+                        <a href="~/Home/Index">
                             <i class="glyphicon glyphicon-home"></i>
                             الرئيسية
                         </a>
                     </li>
 
                     <li>
-                        <a href="#">
+                        <a href="~/Home/About">
                             <i class="glyphicon glyphicon-sign"></i>
                             حول الموقع
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="~/Home/Contact">
                             <i class="glyphicon glyphicon-envelope"></i>
                             اتصل بنا
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <input type="text" name="searchName" id="searchName" placeholder="ابحث هنا" style="background-image: url('https://www.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-512.png');"/>
-                        </a>
+                        @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+                        {
+                            <input type="text" name="searchName" id="searchName"
+                                   placeholder=" ابحث هنا عن وظيفة /تخصص/..الخ" style="background-image: url('https://www.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-512.png');" />
+                        }
+
+
                     </li>
                 </ul>
                 <!-- login-->
@@ -53,13 +57,14 @@
             </div>
         </div>
     </nav>
+   
 
     <div class="container">
-        <div class="row">
+        <div class="row"style="min-height:580px">
             @RenderBody()
         </div>
     </div>
-   
+
     <!--footer-->
     <footer class="navbar  myfooter">
         <div class="container">
@@ -71,10 +76,11 @@
                         من نحن؟
 
                     </h3>
-                    <p>
+                    <p style="color:azure ; margin-bottom :20px;
+    font-family :myFont2 ;">
                         السلام عليكم ورحمة الله تسعدنا زيارتكم للموقع ونتمني ان ينال اعجابكم وهذا الموقع مهتم بالتوظيف والوظائف الخاصة
 
-                    </p>
+                    </>
                 </div>
                 <div class="col-md-4">
                     <h3>

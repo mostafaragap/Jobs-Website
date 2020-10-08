@@ -1,0 +1,33 @@
+﻿@model IEnumerable<EgyGobs.Models.Job>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+    <div class="panel panel-info" style="padding:15px">
+        <h1 class="panel-heading">نتائج البحث</h1>
+       @{ 
+           if(ViewBag.Result != null)
+           {
+               <h3 style="color: orangered"> @ViewBag.Result</h3>
+           }
+       }
+        <div class="row panel-body">
+            @foreach (var subitem in Model)
+            {
+
+
+                <div class="col-md-3 thumbnail" style="margin-bottom:30px; margin-left:20px; min-height:380px ; background-color:azure">
+                    <img src="@Url.Action("UserPhotos", "Home" , new { id = subitem.Id} )" />
+
+                    <h3>@Html.DisplayFor(modelitem => subitem.JobTitle)</h3>
+                    <h3> @Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(modelitem => subitem.JobContent).ToString())) </h3>
+                    @Html.ActionLink("التفاصيل", "Details", new { job_Id = subitem.Id }, new { @class = "btn btn-primary" })
+                </div>
+
+
+            }
+        </div>
+    </div>

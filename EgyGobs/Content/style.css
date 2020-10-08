@@ -50,13 +50,18 @@ body {
     padding: 10px;
     text-align: center;
 }
+.myfooter a {
+    color: azure;
+}
 
+/*
 .myfooter a,p{
     color :azure ;
 }
 
+*/
 
-.myfooter h3 , ul ,p {
+.myfooter h3 , ul  {
     margin-bottom :20px;
     font-family :myFont2 ;
 
@@ -75,10 +80,28 @@ body {
   background-position:10px 10px;
     background-repeat: no-repeat;
     padding: 12px 20px 12px 10px ;
-    margin-top:-15px;
+   
     transition:width 0.4s ease-in-out ;
 }
 
 #searchName:focus{
     width:100%;
+}
+
+.img-size{
+
+    font-size :90px;
+}
+.navbar-user
+{
+    padding:10px ;
+    padding-bottom:0px ; 
+    width:350px ;
+}
+
+@media(min-width: 992px)
+{
+    .col-md-3 {
+        width:22% ;
+    }
 }

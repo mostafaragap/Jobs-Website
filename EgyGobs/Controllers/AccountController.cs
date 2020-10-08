@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -150,13 +151,32 @@ namespace WebApplication1.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register([Bind(Exclude = "UserImage")] RegisterViewModel model)
         {
+           
+
             if (ModelState.IsValid)
             {
+                
                 ViewBag.UserType = new SelectList(db.Roles.Where(a => !a.Name.Contains("Admin")).ToList(), "Name", "Name");
-                var user = new ApplicationUser { UserName = model.username, Email = model.Email , usertype=model.usertype , country=model.country };
+
+                byte[] imageDatas = null;
+                if (Request.Files.Count > 0)
+                {
+                    HttpPostedFileBase poImgFile = Request.Files["UserImage"];
+
+                    using (var binary = new BinaryReader(poImgFile.InputStream))
+                    {
+                        imageDatas = binary.ReadBytes(poImgFile.ContentLength);
+                    }
+                }
+
+                var user = new ApplicationUser { UserName = model.username, Email = model.Email , usertype=model.usertype , country=model.country  };
+                user.UserImage = imageDatas;
                 var result = await UserManager.CreateAsync(user, model.Password);
+
+              
+
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
@@ -176,6 +196,46 @@ namespace WebApplication1.Controllers
             return View(model);
         }
 
+  
+
+       
+        public ActionResult EditProfile()
+        {
+            var UserId = User.Identity.GetUserId();
+            var user = db.Users.Where(a => a.Id == UserId).SingleOrDefault();
+            EditProfileViewModel profile = new EditProfileViewModel(); 
+           
+            profile.username = user.UserName;
+            profile.Email = user.Email;
+            return View(profile);
+        }
+
+        [HttpPost]
+        public ActionResult EditProfile(EditProfileViewModel profile)
+        {
+            var UserId = User.Identity.GetUserId();
+            var CurrentUser = db.Users.Where(a => a.Id == UserId).SingleOrDefault();
+            if(!UserManager.CheckPassword(CurrentUser , profile.CurrentPassword))
+            {
+
+                ViewBag.Message = "كلمة السر الحالية غير صحيحة";
+                
+
+            }
+            else
+            {
+                var newPasswordHashed = UserManager.PasswordHasher.HashPassword(profile.NewPassword);
+             
+                CurrentUser.UserName = profile.username;
+                CurrentUser.Email = profile.Email;
+                CurrentUser.PasswordHash = newPasswordHashed;
+                db.Entry(CurrentUser).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                ViewBag.Message = "تمت عملية التحديث بنجاح";
+            }
+
+            return View(profile);
+        }
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]

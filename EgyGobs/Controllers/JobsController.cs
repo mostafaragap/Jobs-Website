@@ -20,7 +20,9 @@ namespace EgyGobs.Controllers
         // GET: Jobs
         public ActionResult Index()
         {
-            var jobs = db.Jobs.Include(j => j.category);
+            var UserId = User.Identity.GetUserId();
+
+            var jobs = db.Jobs.Include(j => j.category).Where(a=> a.UserId == UserId);
             return View(jobs.ToList());
         }
 

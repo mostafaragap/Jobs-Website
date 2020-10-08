@@ -11,9 +11,12 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.job.category.CategoryName)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.job.JobTitle)
         </th>
-       
+
         <th>
             @Html.DisplayName("الرسالة")
         </th>
@@ -24,23 +27,26 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.job.JobTitle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.message)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApplayDate)
-        </td>
-       
-        <td>
-            @Html.ActionLink("تعديل", "EditJob", new { id = item.id }, new { @class = "btn btn-info" }) |
-            @Html.ActionLink("تفاصيل", "DetailsJob", new { id = item.id }, new { @class = "btn btn-primary" }) |
-            @Html.ActionLink("حذف", "DeleteJob", new { id = item.id }, new { @class = "btn btn-danger" })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.job.category.CategoryName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.job.JobTitle)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.message)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ApplayDate)
+    </td>
+
+    <td>
+        @Html.ActionLink("تعديل", "EditJob", new { id = item.id }, new { @class = "btn btn-info" }) 
+        @Html.ActionLink("تفاصيل", "DetailsJob", new { id = item.id }, new { @class = "btn btn-primary" }) 
+        @Html.ActionLink("حذف", "DeleteJob", new { id = item.id }, new { @class = "btn btn-danger" })
+    </td>
+</tr>
 }
 
 </table>

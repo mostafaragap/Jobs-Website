@@ -5,7 +5,7 @@
 
 <h3>@ViewBag.Title</h3>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <h4>انشاء حساب جديد</h4>
@@ -19,9 +19,17 @@
         </div>
     </div>
     <div class="form-group">
+        @Html.LabelFor(m => m.UserImage, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+
+            <input type="file" name="UserImage" id="fileUpload" accept=".png,.jpg,.jpeg,.gif,.tif" />
+
+        </div>
+    </div>
+    <div class="form-group">
         @Html.LabelFor(m => m.usertype, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownList("UserType" ,null ,new {@class="form-control" })
+            @Html.DropDownList("UserType", null, new { @class = "form-control" })
         </div>
     </div>
 
