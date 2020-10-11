@@ -160,6 +160,7 @@ namespace WebApplication1.Controllers
                 job.jobId = job_id;
                 job.message = message;
                 job.ApplayDate = DateTime.Now;
+                job.IsConfirmed = false;
                 db.ApplyForJobs.Add(job);
                 db.SaveChanges();
                 ViewBag.Result = " تمت عملية التقدم بنجاح";
@@ -221,7 +222,7 @@ namespace WebApplication1.Controllers
             if (ModelState.IsValid)
             {
                 job.ApplayDate = DateTime.Now;
-                job.job.JobImage = job.job.JobImage;
+                job.IsConfirmed = false;
                 db.Entry(job).State = EntityState.Modified;
                
                 db.SaveChanges();
@@ -308,6 +309,65 @@ namespace WebApplication1.Controllers
                 return View(result.ToList());
             }
          
+        }
+        [HttpGet]
+        public ActionResult AgreeForJob(int id)
+        {
+            if(id == null)
+            {
+                return HttpNotFound();
+            }
+            ApplyForJob job = db.ApplyForJobs.Find(id);
+            if(job ==null)
+            {
+                return HttpNotFound();
+
+            }
+            return View(job); 
+
+        }
+
+        [HttpPost, ActionName("AgreeForJob")]
+        [ValidateAntiForgeryToken]
+        public ActionResult AgreeConfirmed(int id)
+        {
+            ApplyForJob job = db.ApplyForJobs.Find(id);
+            var UserId = User.Identity.GetUserId();
+            var user = db.Users.Where(a=>a.Id == UserId).SingleOrDefault();
+            var check = db.ApplyForJobs.Where(a => a.jobId == id && a.IsConfirmed==true).ToList();
+
+            if (job.IsConfirmed == false && check.Count()<1)
+            {
+                job.IsConfirmed = true;
+                db.Entry(job).Property("IsConfirmed").IsModified = true;
+                db.SaveChanges();
+                
+                var mail = new MailMessage();
+                var loginInfo = new NetworkCredential("devmostafa350@gmail.com", "MOstafa1234_");
+                mail.From = new MailAddress(user.Email);
+                mail.To.Add(new MailAddress(job.user.Email));
+                mail.Subject = "EgyGobs";
+                mail.IsBodyHtml = true;
+                string body = "اسم المرسل : " + user.UserName + "<br>" +
+                    " بريد المرسل : " + user.Email + "<br>" +
+                    "عنوان الرسالة :  لقد وافق " + "<b>"+user.UserName +"</b>"+ " على طلبك بالتقدم الى هذا الوظيفة ويرجي سرعة التواصل معه"+ "<br>" +
+                    "نص الرسالة : <b>" + "لقد تم قبولك لهذه الوظيفة : " + job.job.JobTitle+" ."+ " يرجى سرعة التواصل معنا على حسابنا الشخصي" + "</b>";
+                mail.Body = body;
+
+                var smtpClient = new SmtpClient("smtp.gmail.com", 587);
+                smtpClient.EnableSsl = true;
+                smtpClient.Credentials = loginInfo;
+                smtpClient.Send(mail);
+                ViewBag.Mess = "تمت الموافقة بنجاح";
+
+                return View(job);
+            }
+            else
+            {
+                ViewBag.Mess = "عفوا لقد سبق ووافقت على هذا الطلب";
+            }
+
+            return View();
         }
 
 

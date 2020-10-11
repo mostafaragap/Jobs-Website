@@ -543,6 +543,10 @@
     <Compile Include="Migrations\202010040248163_updateCol.designer.cs">
       <DependentUpon>202010040248163_updateCol.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202010111539037_AddBooll.cs" />
+    <Compile Include="Migrations\202010111539037_AddBooll.designer.cs">
+      <DependentUpon>202010111539037_AddBooll.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplyForJob.cs" />
@@ -660,6 +664,7 @@
     <Content Include="Scripts\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="Scripts\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Scripts\ckeditor\skins\moono-lisa\readme.md" />
+    <Content Include="Views\Home\AgreeForJob.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -707,6 +712,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202010040248163_updateCol.resx">
       <DependentUpon>202010040248163_updateCol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010111539037_AddBooll.resx">
+      <DependentUpon>202010111539037_AddBooll.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

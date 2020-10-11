@@ -27,22 +27,31 @@
             <th>
                 تاريخ الارسال
             </th>
+            <th>
+                متقدم
+            </th>
         </tr>
         @foreach (var item in gr.Items)
         {
-            <tr>
-                <td>
-                    @item.user.UserName
-                </td>
-                <td>
-                    @item.message
-                </td>
-                <td>
-                    @item.ApplayDate
-                </td>
+    <tr>
+        <td>
+            @item.user.UserName
+        </td>
+        <td>
+            @item.message
+        </td>
+        <td>
+            @item.ApplayDate
+        </td>
+
+        <td>
+            @Html.ActionLink("تفاصيل الطلب", "AgreeForJob", new { id = item.id }, new { @class = "btn btn-primary" })
+          
+            @Html.ActionLink("حذف الطلب", "Delete", new { id = item.id }, new { @class = "btn btn-danger" })
+        </td>
 
 
-            </tr>
+    </tr>
 
         }
 

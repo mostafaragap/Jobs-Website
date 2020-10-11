@@ -183,3 +183,4 @@ E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.csproj.CopyComplete
 E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.dll
 E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.pdb
 E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.Migrations.updateCol.resources
+E:\VisualStudio\EgyptJobs\EgyGobs\EgyGobs\obj\Debug\EgyGobs.Migrations.AddBooll.resources

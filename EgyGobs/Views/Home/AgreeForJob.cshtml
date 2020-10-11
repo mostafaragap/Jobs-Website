@@ -1,0 +1,68 @@
+﻿@model EgyGobs.Models.ApplyForJob
+
+@{
+    ViewBag.Title = "تفاصيل التقدم";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>تفاصيل التقدم الى الوظيفة</h2>
+@{
+    if (ViewBag.Mess != null)
+    {
+        <h3 style="color:red">@ViewBag.Mess</h3>
+    }
+   
+}
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job.JobTitle) :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(modelItem => Model.job.JobTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("اسم الباحث") :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(modelItem => Model.user.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("الرسالة"):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(modelItem => Model.message)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("تاريخ التقدم"):
+        </dt>
+
+        <dd>
+
+            @Html.DisplayFor(modelItem => Model.ApplayDate)
+        </dd>
+
+
+
+    </dl>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value=" تاكيدالطلب " class="btn btn-success" />
+        @Html.ActionLink("الرجوع الى القائمة", "GetJobsByPublishers")
+    </div>
+}

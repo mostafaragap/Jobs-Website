@@ -15,6 +15,7 @@ namespace EgyGobs.Models
         public string userId { get; set; }
         public virtual Job job { get; set; }
         public virtual ApplicationUser  user { get; set; }
+        public bool IsConfirmed { get; set; }
 
     }
 }
