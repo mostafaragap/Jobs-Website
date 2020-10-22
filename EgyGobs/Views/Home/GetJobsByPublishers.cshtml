@@ -1,15 +1,16 @@
 ﻿@model IEnumerable<EgyGobs.Models.JobsViewModel>
+@using WebApplication1.Models;
+@using EgyGobs.Models;
 
-
-    <div>
-        @{
-            if (ViewBag.Res != null)
-            {
-                <h3 style="color:red">@ViewBag.Res</h3>
-            }
-           
+<div>
+    @{
+        if (ViewBag.Res != null)
+        {
+            <h3 style="color:red">@ViewBag.Res</h3>
         }
-    </div>
+
+    }
+</div>
 
 @foreach (var gr in Model)
 {
@@ -33,25 +34,34 @@
         </tr>
         @foreach (var item in gr.Items)
         {
-    <tr>
-        <td>
-            @item.user.UserName
-        </td>
-        <td>
-            @item.message
-        </td>
-        <td>
-            @item.ApplayDate
-        </td>
+            <tr>
+                <td>
+                    @item.user.UserName
+                </td>
+                <td>
+                    @item.message
+                </td>
+                <td>
+                    @item.ApplayDate
+                </td>
 
-        <td>
-            @Html.ActionLink("تفاصيل الطلب", "AgreeForJob", new { id = item.id }, new { @class = "btn btn-primary" })
-          
-            @Html.ActionLink("حذف الطلب", "Delete", new { id = item.id }, new { @class = "btn btn-danger" })
-        </td>
+                <td>
+                    @Html.ActionLink("تفاصيل الطلب", "AgreeForJob", new { id = item.id }, new { @class = "btn btn-primary" })
+
+                    @{
+
+                        ApplicationDbContext db = new ApplicationDbContext();
+                        ApplyForJob jobs = db.ApplyForJobs.Find(item.id);
+                        if (jobs.IsConfirmed != true)
+                        {
+                            @Html.ActionLink("رفض الطلب", "RefuseApply", new { id = item.id }, new { @class = "btn btn-danger" })
+                        }
+                    }
+
+                </td>
 
 
-    </tr>
+            </tr>
 
         }
 

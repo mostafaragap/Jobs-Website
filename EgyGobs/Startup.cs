@@ -31,6 +31,7 @@ namespace WebApplication1
                 user.PhoneNumber = "01158688277";
                 user.usertype = "Admin";
                 user.country = "Egypt";
+                user.EmailConfirmed = true;
                 var check = usermanager.Create(user, "MOstafa1234_");
                 if(check.Succeeded)
                 {

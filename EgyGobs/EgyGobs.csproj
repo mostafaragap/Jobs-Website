@@ -486,6 +486,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
@@ -665,6 +666,11 @@
     <Content Include="Scripts\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Scripts\ckeditor\skins\moono-lisa\readme.md" />
     <Content Include="Views\Home\AgreeForJob.cshtml" />
+    <Content Include="Views\Admin\ListUsers.cshtml" />
+    <Content Include="Views\Admin\BlockUser.cshtml" />
+    <Content Include="Views\Admin\UnBlockUser.cshtml" />
+    <Content Include="Views\Admin\ListJobs.cshtml" />
+    <Content Include="Views\Admin\DeleteJob.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

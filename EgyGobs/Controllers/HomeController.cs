@@ -175,7 +175,7 @@ namespace WebApplication1.Controllers
              
             return View();
         }
-
+        [Authorize]
         public ActionResult GetJobsByUser()
         {
             var UserId = User.Identity.GetUserId();
@@ -232,7 +232,7 @@ namespace WebApplication1.Controllers
             return View(job);
         }
 
-
+        [Authorize]
         public ActionResult DeleteJob(int? id)
         {
             if (id == null)
@@ -311,6 +311,7 @@ namespace WebApplication1.Controllers
          
         }
         [HttpGet]
+        [Authorize]
         public ActionResult AgreeForJob(int id)
         {
             if(id == null)
@@ -367,8 +368,47 @@ namespace WebApplication1.Controllers
                 ViewBag.Mess = "عفوا لقد سبق ووافقت على هذا الطلب";
             }
 
-            return View();
+            return View(job);
         }
+
+
+        public ActionResult RefuseApply(int id)
+        {
+
+            ApplyForJob job = db.ApplyForJobs.Find(id);
+            var UserId = User.Identity.GetUserId();
+            var user = db.Users.Find(UserId);
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if(job == null)
+            {
+                return HttpNotFound();
+            }
+
+            var mail = new MailMessage();
+            var loginInfo = new NetworkCredential("devmostafa350@gmail.com", "MOstafa1234_");
+            mail.From = new MailAddress(user.Email);
+            mail.To.Add(new MailAddress(job.user.Email));
+            mail.Subject = "EgyGobs";
+            mail.IsBodyHtml = true;
+            string body = "اسم المرسل : " + user.UserName + "<br>" +
+                " بريد المرسل : " + user.Email + "<br>" +
+                "عنوان الرسالة :  لقد رفض " + "<b>" + user.UserName + "</b>" + "  طلبك للتقدم الى هذه الوظيفة" + "<br>" +
+                "نص الرسالة : <b>" + "عذرا لقد تم رفضك لهذه الوظيفة  : " + job.job.JobTitle + " ." + " التى تقمت اليها في : " +job.ApplayDate + " . ونتمني لك التوفيق فى المحاولة الاخرى"+ "</b>";
+            mail.Body = body;
+
+            var smtpClient = new SmtpClient("smtp.gmail.com", 587);
+            smtpClient.EnableSsl = true;
+            smtpClient.Credentials = loginInfo;
+            smtpClient.Send(mail);
+            db.ApplyForJobs.Remove(job);
+            db.SaveChanges();
+            return RedirectToAction("GetJobsByPublishers");
+        }
+
+
 
 
     }

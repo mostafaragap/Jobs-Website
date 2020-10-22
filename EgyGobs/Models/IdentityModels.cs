@@ -42,6 +42,8 @@ namespace WebApplication1.Models
 
         public System.Data.Entity.DbSet<EgyGobs.Models.ApplyForJob> ApplyForJobs { get; set; }
 
-       // public System.Data.Entity.DbSet<WebApplication1.Models.EditProfileViewModel> EditProfileViewModel { get; set; }
+       // public System.Data.Entity.DbSet<WebApplication1.Models.ApplicationUser> ApplicationUsers { get; set; }
+
+        // public System.Data.Entity.DbSet<WebApplication1.Models.EditProfileViewModel> EditProfileViewModel { get; set; }
     }
 }

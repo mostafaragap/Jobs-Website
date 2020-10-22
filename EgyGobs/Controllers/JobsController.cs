@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity;
 
 namespace EgyGobs.Controllers
 {
+    [Authorize(Roles = "الناشرون")]
     public class JobsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<WebApplication1.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "المستخدمين";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>بيانات مستخدمى الموقع</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("نوع المستخدم")
+        </th>
+        <th>
+            @Html.DisplayName("اسم المستخدم")
+        </th>
+        <th>
+            @Html.DisplayName("البلد")
+        </th>
+
+        <th>
+            @Html.DisplayName("البريد الالكترونى")
+        </th>
+        <th>
+            @Html.DisplayName("حالة المستخدم")
+        </th>
+
+
+
+
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.usertype)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.UserName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.country)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.EmailConfirmed)
+    </td>
+
+
+    <td>
+        @{
+
+            if (item.EmailConfirmed == true)
+            {
+                @Html.ActionLink("حظر المستخدم", "BlockUser", new { id = item.Id } ,new {@class = "btn btn-danger" })
+            }
+            else
+            {
+                @Html.ActionLink("الغاء الحظر", "UnBlockUser", new { id = item.Id },new {@class = "btn btn-primary" })
+
+            }
+        }
+       
+    </td>
+</tr>
+}
+
+</table>
